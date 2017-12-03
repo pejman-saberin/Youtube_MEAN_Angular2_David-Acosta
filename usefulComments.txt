@@ -8,5 +8,28 @@ git checkout -b server-setup  --> give you a new branch
 git branch --> gives you how many different branches that you have
 
 ==========================
+install node using node documentation
 npm init  -->  information about the application
 npm install express@4.15.3 --save
+
+===============================================
+connecting to mongoose:
+
+Already installed mongoose using the following link locally:
+https://www.mkyong.com/mongodb/how-to-install-mongodb-on-windows/
+if you want to run the mongoose locally use : 
+mongod --config D:\mongodb\mongo.config --install 
+mongo
+
+If running on mlab: use only mongod --config D:\mongodb\mongo.config --install 
+
+
+========================================
+//installing angular as a separate
+npm install -g @angular/cli  -->to install angular
+ng new client 
+cd client/
+ng serve
+=========================================
+
+for rest of the comments,  might have to check the commits on git

@@ -1,3 +1,8 @@
 MEAN Stack Tutorial with Angular 2 -->https://www.youtube.com/watch?v=G_xHi0jywmc&t=1220s 
 
 David Acosta
+
+to run the project :  
+nodemon  -->  on the root directory to run the server  --> it will run on http://localhost:8080/
+
+cd client and ng serve inside the client directory to run the angular  front-end --> it will run in http://localhost:4200/
