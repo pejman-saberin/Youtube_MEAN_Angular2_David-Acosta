@@ -2,8 +2,17 @@ const express = require('express');  //copy and paste from https://expressjs.com
 const app = express();
 // copied from http://mongoosejs.com/
 const mongoose = require('mongoose');  //using const is the ES6 syntex
-mongoose.connect('mongodb://localhost/test', { useMongoClient: true });
+const config=require('./config/database');
 mongoose.Promise = global.Promise; //this supress the warning in the consil
+
+mongoose.connect(config.uri, (err)=>{
+  if(err){
+    console.log('Could Not connect to database: ',err);
+  }else{
+    console.log('Connected to database: '+config.db);
+  }
+});
+
 
 app.get('/', (req, res)=>{  ///putting * instead of /  , includes all the paths.
   res.send('<h1>hello world</h1>');

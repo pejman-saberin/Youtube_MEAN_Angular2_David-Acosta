@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/pejman-saberin/Youtube_MEAN_Angular2_David-Acosta#readme",
   "dependencies": {
-    "express": "^4.15.3"
+    "express": "^4.15.3",
+    "mongoose": "^4.10.2"
   }
 }
