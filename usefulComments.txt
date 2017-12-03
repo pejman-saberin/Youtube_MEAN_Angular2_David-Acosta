@@ -1,0 +1,12 @@
+git init -->initializing a new git repository
+git add .
+git commet -m "first commit
+get status
+git remote push master
+git clone  theUrl
+git checkout -b server-setup  --> give you a new branch
+git branch --> gives you how many different branches that you have
+
+==========================
+npm init  -->  information about the application
+npm install express@4.15.3 --save

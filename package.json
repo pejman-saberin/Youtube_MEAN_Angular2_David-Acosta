@@ -1,0 +1,30 @@
+{
+  "name": "youtube_mean_angular2_david-acosta",
+  "version": "1.0.0",
+  "description": "Mean Stack with Angular 2",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pejman-saberin/Youtube_MEAN_Angular2_David-Acosta.git"
+  },
+  "keywords": [
+    "MEAN",
+    "Satck",
+    "Angular",
+    "2",
+    "Application"
+  ],
+  "author": "Pejman Saberin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pejman-saberin/Youtube_MEAN_Angular2_David-Acosta/issues"
+  },
+  "homepage": "https://github.com/pejman-saberin/Youtube_MEAN_Angular2_David-Acosta#readme",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}
