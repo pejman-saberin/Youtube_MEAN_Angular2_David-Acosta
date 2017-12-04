@@ -5,11 +5,11 @@ import {HomeComponent} from './components/home/home.component';
 const appRoutes: Routes = [
   {
     path: '',
-    component: HomeComponent   
+    component: HomeComponent
   },
 
   //{ path: '',   redirectTo: '/heroes', pathMatch: 'full' },
-  //{ path: '**', component: PageNotFoundComponent }
+  { path: '**', component: HomeComponent }  //any other route redirect to homepage
 ];
 
 @NgModule({
