@@ -47,6 +47,9 @@ app.get('*', (req, res)=>{  ///putting * instead of /  , includes all the paths.
   res.sendFile(path.join(__dirname+'/client/dist/index.html'));
 });
 //run using http://localhost:8080/
+
+More angular commands:
+ng generate component navbar
 =========================================
 
 for rest of the comments,  might have to check the commits on git
