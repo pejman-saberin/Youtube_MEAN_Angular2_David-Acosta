@@ -1,8 +1,14 @@
 import { RouterModule, Routes } from '@angular/router';  //pasted directly from https://angular.io/guide/router
 import { NgModule } from '@angular/core';
+import {HomeComponent} from './components/home/home.component';
 
 const appRoutes: Routes = [
-  { path: '',   redirectTo: '/heroes', pathMatch: 'full' },
+  {
+    path: '',
+    component: HomeComponent   
+  },
+
+  //{ path: '',   redirectTo: '/heroes', pathMatch: 'full' },
   //{ path: '**', component: PageNotFoundComponent }
 ];
 
