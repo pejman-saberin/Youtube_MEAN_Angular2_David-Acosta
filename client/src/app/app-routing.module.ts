@@ -1,12 +1,17 @@
 import { RouterModule, Routes } from '@angular/router';  //pasted directly from https://angular.io/guide/router
 import { NgModule } from '@angular/core';
 
+const appRoutes: Routes = [
+  { path: '',   redirectTo: '/heroes', pathMatch: 'full' },
+  //{ path: '**', component: PageNotFoundComponent }
+];
 
 @NgModule({
   declarations: [ ],
-  imports: [ ],
+  imports: [RouterModule.forRoot(appRoutes)],
   providers: [],
-  bootstrap: []
+  bootstrap: [],
+  exports:[RouterModule]
 })
 
 export class AppRoutingModule { }
