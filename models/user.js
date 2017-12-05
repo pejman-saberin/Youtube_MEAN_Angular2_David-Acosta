@@ -23,5 +23,7 @@ userSchema.pre('save',function (next){  //before saving encrypts the password
     })
 });
 
+//decrypting the password
+
 
 module.exports = mongoose.model('User', userSchema);

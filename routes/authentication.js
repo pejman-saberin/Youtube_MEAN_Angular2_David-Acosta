@@ -24,7 +24,11 @@ module.exports=(router)=>{
                     });
                     user.save((err)=>{
                       if (err){
+                        if(err.code===11000){ //this 11000 code is exactly taken from postman and generated from mongoose when we try to use duplicate email
+                            res.json({success:false, message: 'Username or email already exists: ', err});  //generating a different messae than what mongoose creates to make it more user friendly
+                        }else{
                         res.json({success:false, message: 'Could not save user.Error: ', err})
+                      }
                       }else {
                         console.log(req.body.password);
                         res.json({success:true, message: 'User saved!'})
