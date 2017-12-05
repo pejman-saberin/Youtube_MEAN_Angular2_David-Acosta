@@ -1,7 +1,7 @@
 const User=require('../models/user');
 
 module.exports=(router)=>{
-    
+
     router.post('/register',(req,res)=>{
         // req.body.email  body parser is required to change email , username and password into correct format
         // req.body.username
@@ -17,12 +17,22 @@ module.exports=(router)=>{
                 } else{
                     //console.log(req.body);
                     //res.send('hello world');  //for testing purpose
-                    let user=new User();
+                    let user=new User({
+                      email: req.body.email.toLowerCase(),
+                      username:req.body.username.toLowerCase(),
+                      password:req.body.password
+                    });
+                    user.save((err)=>{
+                      if (err){
+                        res.json({success:false, message: 'Could not save user.Error: ', err})
+                      }else {
+                        res.json({success:true, message: 'User saved!'})
+                      }
+                    });
                 }
             }
-            
         }
     });
-    
+
     return router;
 }

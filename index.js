@@ -29,9 +29,9 @@ app.use(bodyParser.json())
 // ng build --> means we are ready to build to production  --> it used the "root": "src" (inside .angular-cli.json and after building puts in dist folder)
 // then  inside index.js add the following => app.use(express.static(__dirname+'/client/dist/'));
 // instead of
-// app.get('/', (req, res)=>{  ///putting * instead of /  , includes all the paths.
-//   res.send('<h1>hello world</h1>');
-// });
+ app.get('/', (req, res)=>{  ///putting * instead of /  , includes all the paths.
+   res.send('<h1>hello world</h1>');
+ });
 // use the following
 app.use(express.static(__dirname+'/client/dist/'));
 app.use('/authentication', authentication);
