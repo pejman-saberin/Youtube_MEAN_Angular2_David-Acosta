@@ -1,9 +1,11 @@
 const express = require('express');  //copy and paste from https://expressjs.com/en/4x/api.html
 const app = express();
+const router = express.Router();
 // copied from http://mongoosejs.com/
 const mongoose = require('mongoose');  //using const is the ES6 syntex
 const config=require('./config/database');
 const path=require('path');
+const authentication=require('./routes/authentication')(router);
 
 mongoose.Promise = global.Promise; //this supress the warning in the console
 mongoose.connect(config.uri,  { useMongoClient: true },(err)=>{  //added  { useMongoClient: true } to supress the message in the console
@@ -24,9 +26,10 @@ if(err){
 // });
 // use the following
 app.use(express.static(__dirname+'/client/dist/'));
-app.get('*', (req, res)=>{  ///putting * instead of /  , includes all the paths.
-  res.sendFile(path.join(__dirname+'/client/dist/index.html'));
-});
+app.use('/authentication', authentication);
+// app.get('*', (req, res)=>{  ///putting * instead of /  , includes all the paths.
+//   res.sendFile(path.join(__dirname+'/client/dist/index.html'));
+// });
 
 
 var port=8080;
