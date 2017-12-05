@@ -26,6 +26,7 @@ module.exports=(router)=>{
                       if (err){
                         res.json({success:false, message: 'Could not save user.Error: ', err})
                       }else {
+                        console.log(req.body.password);
                         res.json({success:true, message: 'User saved!'})
                       }
                     });
