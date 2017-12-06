@@ -2,42 +2,63 @@ const User=require('../models/user');
 
 module.exports=(router)=>{
 
-    router.post('/register',(req,res)=>{
-        // req.body.email  body parser is required to change email , username and password into correct format
-        // req.body.username
-        // req.body.password
-        if (!req.body.email){
-            res.json({success: false, message: 'You must provide an email'});
-        }else{
-            if (!req.body.username) {
-                res.json({success: false, message: 'You must provide a username'});
-            }else {
-                if (!req.body.password) {
-                res.json({success: false, message: 'You must provide a password'});
-                } else{
-                    //console.log(req.body);
-                    //res.send('hello world');  //for testing purpose
-                    let user=new User({
-                      email: req.body.email.toLowerCase(),
-                      username:req.body.username.toLowerCase(),
-                      password:req.body.password
-                    });
-                    user.save((err)=>{
-                      if (err){
-                        if(err.code===11000){ //this 11000 code is exactly taken from postman and generated from mongoose when we try to use duplicate email
-                            res.json({success:false, message: 'Username or email already exists: '});  //generating a different messae than what mongoose creates to make it more user friendly
-                        }else{
-                        res.json({success:false, message: 'Could not save user.Error: ', err})
+  router.post('/register', (req, res) => {
+    // Check if email was provided
+    if (!req.body.email) {
+      res.json({ success: false, message: 'You must provide an e-mail' }); // Return error
+    } else {
+      // Check if username was provided
+      if (!req.body.username) {
+        res.json({ success: false, message: 'You must provide a username' }); // Return error
+      } else {
+        // Check if password was provided
+        if (!req.body.password) {
+          res.json({ success: false, message: 'You must provide a password' }); // Return error
+        } else {
+          // Create new user object and apply user input
+          let user = new User({
+            email: req.body.email.toLowerCase(),
+            username: req.body.username.toLowerCase(),
+            password: req.body.password
+          });
+          // Save user to database
+          user.save((err) => {
+            // Check if error occured
+            if (err) {
+              // Check if error is an error indicating duplicate account
+              if (err.code === 11000) {
+                res.json({ success: false, message: 'Username or e-mail already exists' }); // Return error
+              } else {
+                // Check if error is a validation rror
+                if (err.errors) {
+                  // Check if validation error is in the email field
+                  if (err.errors.email) {
+                    res.json({ success: false, message: err.errors.email.message }); // Return error
+                  } else {
+                    // Check if validation error is in the username field
+                    if (err.errors.username) {
+                      res.json({ success: false, message: err.errors.username.message }); // Return error
+                    } else {
+                      // Check if validation error is in the password field
+                      if (err.errors.password) {
+                        res.json({ success: false, message: err.errors.password.message }); // Return error
+                      } else {
+                        res.json({ success: false, message: err }); // Return any other error not already covered
                       }
-                      }else {
-                        console.log(req.body.password);
-                        res.json({success:true, message: 'User saved!'})
-                      }
-                    });
+                    }
+                  }
+                } else {
+                  res.json({ success: false, message: 'Could not save user. Error: ', err }); // Return error if not related to validation
                 }
+              }
+            } else {
+              res.json({ success: true, message: 'Acount registered!' }); // Return success
             }
+          });
         }
-    });
+      }
+    }
+  });
 
-    return router;
+  return router;
 }
