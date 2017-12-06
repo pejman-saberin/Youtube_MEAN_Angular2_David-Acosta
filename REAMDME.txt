@@ -6,3 +6,8 @@ to run the project :  (Front end and server are completely separate so client (f
 nodemon  -->  on the root directory to run the server  --> it will run on http://localhost:8080/
 
 cd client and ng serve inside the client directory to run the angular  front-end --> it will run in http://localhost:4200/
+
+
+video 1-How to setup Angular and Nodejs backend and how to run the project or upload to production
+video 2-setting up navigation bar for angular page and also setup routing for angular
+video 3-setup node API backend for registration, and adding custom messages and validation and overriding mongoose validation
