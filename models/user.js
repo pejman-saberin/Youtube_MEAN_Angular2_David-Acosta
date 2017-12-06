@@ -125,7 +125,7 @@ const passwordValidators = [
   // Second password validator
   {
     validator: validPassword,
-    message: 'Must have at least one uppercase, lowercase, special character, and number'
+    message: 'Password must have at least one uppercase, lowercase, special character, and number'
   }
 ];
 
