@@ -1,5 +1,5 @@
 const User = require('../models/user'); // Import User Model Schema
-//const jwt = require('jsonwebtoken'); // Compact, URL-safe means of representing claims to be transferred between two parties.
+const jwt = require('jsonwebtoken'); // Compact, URL-safe means of representing claims to be transferred between two parties.
 const config = require('../config/database'); // Import database configuration
 
 module.exports = (router) => {
@@ -139,7 +139,7 @@ module.exports = (router) => {
               if (!validPassword) {
                 res.json({ success: false, message: 'Password invalid' }); // Return error
               } else {
-                //const token = jwt.sign({ userId: user._id }, config.secret, { expiresIn: '24h' }); // Create a token for client
+                const token = jwt.sign({ userId: user._id }, config.secret, { expiresIn: '24h' }); // Create a token for client
                 res.json({
                   success: true,
                   message: 'Success!',
@@ -166,7 +166,7 @@ module.exports = (router) => {
       res.json({ success: false, message: 'No token provided' }); // Return error
     } else {
       // Verify the token is valid
-      /*jwt.verify(token, config.secret, (err, decoded) => {
+      jwt.verify(token, config.secret, (err, decoded) => {
         // Check if error is expired or invalid
         if (err) {
           res.json({ success: false, message: 'Token invalid: ' + err }); // Return error for token validation
@@ -174,7 +174,7 @@ module.exports = (router) => {
           req.decoded = decoded; // Create global variable to use in any request beyond
           next(); // Exit middleware
         }
-      });*/
+      });
     }
   });
 
