@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { RegisterComponent } from './components/register/register.component';
+
 
 
 @NgModule({
@@ -13,7 +15,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    DashboardComponent  //this is generated automatically using ng generate component navbar  .
+    DashboardComponent,
+    RegisterComponent,     
    ],
   imports: [
     BrowserModule,

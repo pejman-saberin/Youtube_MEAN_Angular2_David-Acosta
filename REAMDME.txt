@@ -11,3 +11,4 @@ cd client and ng serve inside the client directory to run the angular  front-end
 video 1-How to setup Angular and Nodejs backend and how to run the project or upload to production
 video 2-setting up navigation bar for angular page and also setup routing for angular
 video 3-setup node API backend for registration, and adding custom messages and validation and overriding mongoose validation
+video 4: generating register component in angular (ng generate component register)
