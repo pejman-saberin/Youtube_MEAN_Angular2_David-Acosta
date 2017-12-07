@@ -4,6 +4,12 @@
     <div [ngClass]="{'has-error': (form.controls.username.errors && form.controls.username.dirty), 'has-success': !form.controls.username.errors}">
       <input type="text" name="username" class="form-control" autocomplete="off" placeholder="*Username"
        formControlName="username">
+       <ul class="help-block">
+         <li *ngIf="form.controls.username.errors?.required && form.controls.username.dirty">This field is required</li>
+         <li *ngIf="form.controls.username.errors?.minLength || form.controls.username.errors?.maxLength">
+           Minimum Charactors: 3, Maximum Charactors:15
+         </li>
+       </ul>
     </div>
   </div>
   <div class="form-group">`
@@ -13,6 +19,9 @@
       formControlName="email">
       <ul class="help-block">
         <li *ngIf="form.controls.email.errors?.required && form.controls.email.dirty">This field is required</li>
+        <li *ngIf="form.controls.email.errors?.minLength || form.controls.email.errors?.maxLength">
+          Minimum Charactors: 5, Maximum Charactors:15
+        </li>
       </ul>
     </div>
   </div>
@@ -20,6 +29,12 @@
     <label for="password">Password</label>
     <div [ngClass]="{'has-error': (form.controls.password.errors && form.controls.password.dirty), 'has-success': !form.controls.password.errors}">
       <input type="password" name="password" class="form-control" autocomplete="off" placeholder="*Password" formControlName="password">
+      <ul class="help-block">
+        <li *ngIf="form.controls.password.errors?.required && form.controls.password.dirty">This field is required</li>
+        <li *ngIf="form.controls.password.errors?.minLength || form.controls.password.errors?.maxLength">
+          Minimum Charactors: 8, Maximum Charactors:35
+        </li>
+      </ul>
     </div>
   </div>
   <div class="form-group">`
@@ -27,6 +42,12 @@
     <div [ngClass]="{'has-error': (form.controls.confirm.errors && form.controls.confirm.dirty), 'has-success': !form.controls.confirm.errors}">
       <input type="password" name="confirm" class="form-control" autocomplete="off" placeholder="*Confirm Password"
       formControlName="confirm">
+      <ul class="help-block">
+        <li *ngIf="form.controls.confirm.errors?.required && form.controls.confirm.dirty">This field is required</li>
+        <li *ngIf="form.controls.password.errors?.minLength || form.controls.password.errors?.maxLength">
+          Minimum Charactors: 8, Maximum Charactors:35
+        </li>
+      </ul>
     </div>
   </div>
   <input type="submit" class="btn btn-primary" value="Submit" [disabled]="!form.valid">

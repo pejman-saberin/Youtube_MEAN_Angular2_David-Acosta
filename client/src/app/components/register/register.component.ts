@@ -18,10 +18,26 @@ export class RegisterComponent implements OnInit {
 
   createForm(){
     this.form=this.formBuilder.group({
-      email:['',Validators.required],  //you can use angular Validators or user your own
-      username:['',Validators.required],
-      password:['',Validators.required],
-      confirm:['',Validators.required],
+      email:['',Validators.compose([  //adding an aray of Validators
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(15)
+      ])],  //you can use angular Validators or user your own
+      username:['',Validators.compose([  //adding an aray of Validators
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(15)
+      ])],
+      password:['',Validators.compose([  //adding an aray of Validators
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(35)
+      ])],
+      confirm:['',Validators.compose([  //adding an aray of Validators
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(35)
+      ])],
     })
   }
 
