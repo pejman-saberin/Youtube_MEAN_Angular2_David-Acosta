@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -16,10 +16,11 @@ import { RegisterComponent } from './components/register/register.component';
     NavbarComponent,
     HomeComponent,
     DashboardComponent,
-    RegisterComponent,     
+    RegisterComponent,
    ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule  //if you just create a module you just add it here
   ],
   providers: [],
