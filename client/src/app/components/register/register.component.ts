@@ -27,19 +27,17 @@ export class RegisterComponent implements OnInit {
       username:['',Validators.compose([  //adding an aray of Validators
         Validators.required,
         Validators.minLength(3),
-        Validators.maxLength(15)
+        Validators.maxLength(15),
+        this.validateUsername
       ])],
       password:['',Validators.compose([  //adding an aray of Validators
         Validators.required,
         Validators.minLength(8),
-        Validators.maxLength(35)
+        Validators.maxLength(35),
+        this.validatePassword
       ])],
-      confirm:['',Validators.compose([  //adding an aray of Validators
-        Validators.required,
-        Validators.minLength(8),
-        Validators.maxLength(35)
-      ])],
-    })
+      confirm:['',Validators.required]
+    }, { validator: this.matchingPasswords('password', 'confirm') }); // Add custom validator to form for matching passwords
   }
 
   // Function to validate e-mail is proper format
@@ -53,6 +51,43 @@ export class RegisterComponent implements OnInit {
       return { 'validateEmail': true } // Return as invalid email.. validEmail is the name of the function
     }
   }
+
+  // Function to validate username is proper format
+  validateUsername(controls) {
+    // Create a regular expression
+    const regExp = new RegExp(/^[a-zA-Z0-9]+$/);
+    // Test username against regular expression
+    if (regExp.test(controls.value)) {
+      return null; // Return as valid username
+    } else {
+      return { 'validateUsername': true } // Return as invalid username
+    }
+  }
+
+  // Function to validate password
+ validatePassword(controls) {
+   // Create a regular expression
+   const regExp = new RegExp(/^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[\d])(?=.*?[\W]).{8,35}$/);
+   // Test password against regular expression
+   if (regExp.test(controls.value)) {
+     return null; // Return as valid password
+   } else {
+     return { 'validatePassword': true } // Return as invalid password
+   }
+ }
+
+ // Funciton to ensure passwords match
+matchingPasswords(password, confirm) {
+  return (group: FormGroup) => {
+    // Check if both fields are the same
+    if (group.controls[password].value === group.controls[confirm].value) {
+      return null; // Return as a match
+    } else {
+      return { 'matchingPasswords': true } // Return as error: do not match
+    }
+  }
+}
+
 
   onRegisterSubmit(){
     //console.log(this.form);
