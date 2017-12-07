@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup,Validators } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
   form: FormGroup; //this allows us to access the form
-  
+
   constructor(private formBuilder:FormBuilder) {
     this.createForm(); //everytime this component is generated, this form is automatically generated}
   }
@@ -18,11 +18,15 @@ export class RegisterComponent implements OnInit {
 
   createForm(){
     this.form=this.formBuilder.group({
-      email:'',
+      email:['',Validators.required],  //you can use angular Validators or user your own
       username:'',
       password:'',
       confirm:''
     })
+  }
+
+  onRegisterSubmit(){
+    console.log(this.form);
   }
 
 

@@ -1,4 +1,4 @@
-<form [formGroup]='form'>  <!-- this is how you access the form-->
+<form [formGroup]='form' (submit)="onRegisterSubmit()">  <!-- this is how you access the form-->
   <div class="form-group">`
     <label for="username">Username</label>
     <div>
@@ -8,9 +8,12 @@
   </div>
   <div class="form-group">`
     <label for="email">E-mail</label>
-    <div>
+    <div [ngClass]="{'has-error': (form.controls.email.errors && form.controls.email.dirty), 'has-success': !form.controls.email.errors}">
       <input type="text" name="email" class="form-control" autocomplete="off" placeholder="*E-mail"
       formControlName="email">
+      <ul class="help-block">
+        <li *ngIf="form.controls.email.errors?.required && form.controls.email.dirty">This field is required</li>
+      </ul>
     </div>
   </div>
   <div class="form-group">`
