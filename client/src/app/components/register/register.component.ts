@@ -21,7 +21,8 @@ export class RegisterComponent implements OnInit {
       email:['',Validators.compose([  //adding an aray of Validators
         Validators.required,
         Validators.minLength(5),
-        Validators.maxLength(15)
+        Validators.maxLength(30),
+        this.validateEmail
       ])],  //you can use angular Validators or user your own
       username:['',Validators.compose([  //adding an aray of Validators
         Validators.required,
@@ -39,6 +40,18 @@ export class RegisterComponent implements OnInit {
         Validators.maxLength(35)
       ])],
     })
+  }
+
+  // Function to validate e-mail is proper format
+  validateEmail(controls) {
+    // Create a regular expression
+    const regExp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
+    // Test email against regular expression
+    if (regExp.test(controls.value)) {
+      return null; // Return as valid email
+    } else {
+      return { 'validateEmail': true } // Return as invalid email.. validEmail is the name of the function
+    }
   }
 
   onRegisterSubmit(){

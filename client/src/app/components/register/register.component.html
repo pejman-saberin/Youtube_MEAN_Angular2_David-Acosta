@@ -19,8 +19,11 @@
       formControlName="email">
       <ul class="help-block">
         <li *ngIf="form.controls.email.errors?.required && form.controls.email.dirty">This field is required</li>
-        <li *ngIf="form.controls.email.errors?.minLength || form.controls.email.errors?.maxLength">
-          Minimum Charactors: 5, Maximum Charactors:15
+        <li *ngIf="(form.controls.email.errors?.minLength || form.controls.email.errors?.maxLength) && form.controls.email.dirty">
+          Minimum Charactors: 5, Maximum Charactors:30
+        </li>
+        <li *ngIf="form.controls.email.errors?.validateEmail && form.controls.email.dirty">
+          This must be a valid e-mail
         </li>
       </ul>
     </div>
