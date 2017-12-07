@@ -19,9 +19,9 @@ export class RegisterComponent implements OnInit {
   createForm(){
     this.form=this.formBuilder.group({
       email:['',Validators.required],  //you can use angular Validators or user your own
-      username:'',
-      password:'',
-      confirm:''
+      username:['',Validators.required],
+      password:['',Validators.required],
+      confirm:['',Validators.required],
     })
   }
 
