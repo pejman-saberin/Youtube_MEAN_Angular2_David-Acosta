@@ -14,6 +14,7 @@ git merge 'name of the branch' --> merges the branch to the master, if you are i
 install node using node documentation
 npm init  -->  information about the application
 npm install express@4.15.3 --save
+npm install cors --save --> this is needed if you are sending request from front end to the backend in localhost, prevents cross origin request are not allowed error
 
 ===============================================
 connecting to mongoose:
@@ -24,7 +25,7 @@ if you want to run the mongoose locally use :
 mongod --config D:\mongodb\mongo.config --install 
 mongo
 
-If running on mlab: use only mongod --config D:\mongodb\mongo.config --install 
+If running on mlab: you don't neeed above
 
 
 ========================================
@@ -50,6 +51,7 @@ app.get('*', (req, res)=>{  ///putting * instead of /  , includes all the paths.
 
 More angular commands:
 ng generate component navbar
+ng generate service authservice
 =========================================
 
 for rest of the comments,  might have to check the commits on git

@@ -7,6 +7,7 @@ const mongoose = require('mongoose');  //using const is the ES6 syntex
 const config=require('./config/database');
 const path=require('path');
 const authentication=require('./routes/authentication')(router);
+const cors=require('cors');//this is needed if you are sending request from front end to the backend in localhost, prevents cross origin request are not allowed error
 
 mongoose.Promise = global.Promise; //this supress the warning in the console
 mongoose.connect(config.uri,  { useMongoClient: true },(err)=>{  //added  { useMongoClient: true } to supress the message in the console
@@ -18,6 +19,13 @@ if(err){
 }
 });
 
+var corsOptions = {//be careful using cors to not allow cross orgin from any domain
+  origin: 'http://example.com',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+app.use(cors({
+  origin: 'http://localhost:4200' //once you implement the application is not require if you are implmenting on one domain. This allow http request from front end developemnet
+}))
 //body parser is a middleware used to parse data copied from https://github.com/expressjs/body-parser
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))

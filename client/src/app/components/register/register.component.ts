@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,Validators } from '@angular/forms';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +10,9 @@ import { FormBuilder, FormGroup,Validators } from '@angular/forms';
 export class RegisterComponent implements OnInit {
   form: FormGroup; //this allows us to access the form
 
-  constructor(private formBuilder:FormBuilder) {
+  constructor(
+    private formBuilder:FormBuilder,
+    private authService:AuthService) {
     this.createForm(); //everytime this component is generated, this form is automatically generated}
   }
   ngOnInit() {
@@ -91,6 +94,18 @@ matchingPasswords(password, confirm) {
 
   onRegisterSubmit(){
     //console.log(this.form);
+    // console.log(this.form.get('email').value);  //form is the name of the form
+    // console.log(this.form.get('username').value);  //form is the name of the form
+    // console.log(this.form.get('password').value);  //form is the name of the form
+    const user={
+      email: this.form.get('email').value,
+      username: this.form.get('username').value,
+      password: this.form.get('password').value,
+    }
+
+    this.authService.registerUser(user).subscribe(data=>{
+      console.log(data);//data is the response we are getting from the server
+    })
 
   }
 

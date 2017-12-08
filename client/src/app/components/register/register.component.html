@@ -60,6 +60,9 @@
       </div>
     </div>
 
-<p>username: {{form.controls.username.value}}</p>  <!--data binding-->
+    <!-- Submit Input -->
+  <input [disabled]="!form.valid" type="submit" class="btn btn-primary" value="Submit" />
+</form>
+<!-- <p>username: {{form.controls.username.value}}</p>  data binding
 <p>email: {{form.controls.email.value}}</p>
-<p>password: {{form.controls.password.value}}</p>
+<p>password: {{form.controls.password.value}}</p>    --> 
