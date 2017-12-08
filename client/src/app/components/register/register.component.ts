@@ -46,6 +46,21 @@ export class RegisterComponent implements OnInit {
     }, { validator: this.matchingPasswords('password', 'confirm') }); // Add custom validator to form for matching passwords
   }
 
+  disableForm(){
+    this.form.controls['email'].disable();
+    this.form.controls['username'].disable();
+    this.form.controls['password'].disable();
+    this.form.controls['confirm'].disable();
+  }
+
+  enableForm(){
+    this.form.controls['email'].enable();
+    this.form.controls['username'].enable();
+    this.form.controls['password'].enable();
+    this.form.controls['confirm'].enable();
+
+  }
+
   // Function to validate e-mail is proper format
   validateEmail(controls) {
     // Create a regular expression
@@ -108,11 +123,13 @@ matchingPasswords(password, confirm) {
 
     this.authService.registerUser(user).subscribe(data=>{
       this.processing=true; //
+      this.disableForm();
       //console.log(data);//data is the response we are getting from the server
       if(!data.success){
         this.messageClass='alert alert-danger';
         this.message=data.message;
         this.processing=false;
+        this.enableForm();
       }else{
         this.messageClass='alert alert-success';
         this.message=data.message;
