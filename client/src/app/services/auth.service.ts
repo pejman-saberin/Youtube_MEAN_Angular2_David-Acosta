@@ -5,7 +5,8 @@ import 'rxjs/add/operator/map'
 @Injectable()
 export class AuthService {
 
-  domain="http://localhost:8080";
+  //domain="http://localhost:8080";
+  domain="https://mean-project-pejmansaberin.c9users.io:8080"; //cloud 9 
 
   constructor(private http: Http)
   { }
