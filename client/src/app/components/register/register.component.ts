@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,Validators } from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +20,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private formBuilder:FormBuilder,
-    private authService:AuthService) {
+    private authService:AuthService,
+    private router:Router) {
       this.createForm(); //everytime this component is generated, this form is automatically generated}
     }
     ngOnInit() {
@@ -137,6 +139,9 @@ export class RegisterComponent implements OnInit {
         }else{
           this.messageClass='alert alert-success';
           this.message=data.message;
+          setTimeout(()=>{
+            this.router.navigate(['./login']);  //reroute the user once logged in
+          },2000)
         }
       })
     }
