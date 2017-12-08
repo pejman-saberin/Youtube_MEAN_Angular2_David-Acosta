@@ -9,6 +9,8 @@ import {AuthService} from '../../services/auth.service';
 })
 export class RegisterComponent implements OnInit {
   form: FormGroup; //this allows us to access the form
+  message;
+  messageClass;
 
   constructor(
     private formBuilder:FormBuilder,
@@ -104,9 +106,15 @@ matchingPasswords(password, confirm) {
     }
 
     this.authService.registerUser(user).subscribe(data=>{
-      console.log(data);//data is the response we are getting from the server
+      //console.log(data);//data is the response we are getting from the server
+      if(!data.success){
+        this.messageClass='alert alert-danger';
+        this.message=data.message;
+      }else{
+        this.messageClass='alert alert-success';
+        this.message=data.message;
+      }
     })
-
   }
 
 

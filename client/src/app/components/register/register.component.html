@@ -1,3 +1,12 @@
+<h1 class=page-header>Register Page</h1>
+
+<!--the message below is sent via authentintication.js upon registerdation-->
+<div class="row show-hide-message">
+  <div [ngClass]="messageClass">
+    {{message}}
+  </div>
+</div>
+
 <form [formGroup]='form' (submit)="onRegisterSubmit()">  <!-- this is how you access the form-->
   <div class="form-group">`
     <label for="username">Username</label>
@@ -65,4 +74,4 @@
 </form>
 <!-- <p>username: {{form.controls.username.value}}</p>  data binding
 <p>email: {{form.controls.email.value}}</p>
-<p>password: {{form.controls.password.value}}</p>    --> 
+<p>password: {{form.controls.password.value}}</p>    -->
