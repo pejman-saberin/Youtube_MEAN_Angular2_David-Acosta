@@ -5,8 +5,8 @@ import 'rxjs/add/operator/map'
 @Injectable()
 export class AuthService {
 
-  //domain="http://localhost:8080";
-  domain="https://mean-project-pejmansaberin.c9users.io:8080"; //cloud 9 
+  domain="http://localhost:8080";
+  //domain="https://mean-project-pejmansaberin.c9users.io:8080"; //cloud 9
   authToken;
   user;
 
@@ -25,12 +25,12 @@ export class AuthService {
     console.log('this is email'+email);
      return this.http.get(this.domain+'/authentication/checkEmail/'+ email).map(res=>res.json());
   }
-  
+
   login(user){
     return this.http.post(this.domain+'/authentication/login',user).map(res=>res.json());
   }
-  
-  
+
+
   storeUserData(token,user){
     localStorage.setItem('token',token);
     localStorage.setItem('user',JSON.stringify(user));
