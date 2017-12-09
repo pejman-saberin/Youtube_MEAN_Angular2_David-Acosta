@@ -63,6 +63,8 @@ module.exports = (router) => {
       }
     }
   });
+  /*checkemail and checkUsername will be called while the user is tying inside the
+username or email box in the frontend and privide live feedback to the user*/
 
   /* ============================================================
      Route to check if user's email is available for registration
@@ -156,122 +158,77 @@ module.exports = (router) => {
     }
   });
 
-  /* ================================================
-  MIDDLEWARE - Used to grab user's token from headers
-  ================================================ */
-  router.use((req, res, next) => {
-    const token = req.headers['authorization']; // Create token found in headers
-    // Check if token was found in headers
-    if (!token) {
-      res.json({ success: false, message: 'No token provided' }); // Return error
-    } else {
-      // Verify the token is valid
-      jwt.verify(token, config.secret, (err, decoded) => {
-        // Check if error is expired or invalid
-        if (err) {
-          res.json({ success: false, message: 'Token invalid: ' + err }); // Return error for token validation
-        } else {
-          req.decoded = decoded; // Create global variable to use in any request beyond
-          next(); // Exit middleware
-        }
-      });
-    }
-  });
+  // /* ================================================
+  // MIDDLEWARE - Used to grab user's token from headers
+  // ================================================ */
+  // router.use((req, res, next) => {
+  //   const token = req.headers['authorization']; // Create token found in headers
+  //   // Check if token was found in headers
+  //   if (!token) {
+  //     res.json({ success: false, message: 'No token provided' }); // Return error
+  //   } else {
+  //     // Verify the token is valid
+  //     jwt.verify(token, config.secret, (err, decoded) => {
+  //       // Check if error is expired or invalid
+  //       if (err) {
+  //         res.json({ success: false, message: 'Token invalid: ' + err }); // Return error for token validation
+  //       } else {
+  //         req.decoded = decoded; // Create global variable to use in any request beyond
+  //         next(); // Exit middleware
+  //       }
+  //     });
+  //   }
+  // });
 
-  /* ===============================================================
-     Route to get user's profile data
-  =============================================================== */
-  router.get('/profile', (req, res) => {
-    // Search for user in database
-    User.findOne({ _id: req.decoded.userId }).select('username email').exec((err, user) => {
-      // Check if error connecting
-      if (err) {
-        res.json({ success: false, message: err }); // Return error
-      } else {
-        // Check if user was found in database
-        if (!user) {
-          res.json({ success: false, message: 'User not found' }); // Return error, user was not found in db
-        } else {
-          res.json({ success: true, user: user }); // Return success, send user object to frontend for profile
-        }
-      }
-    });
-  });
+  // /* ===============================================================
+  //   Route to get user's profile data
+  // =============================================================== */
+  // router.get('/profile', (req, res) => {
+  //   // Search for user in database
+  //   User.findOne({ _id: req.decoded.userId }).select('username email').exec((err, user) => {
+  //     // Check if error connecting
+  //     if (err) {
+  //       res.json({ success: false, message: err }); // Return error
+  //     } else {
+  //       // Check if user was found in database
+  //       if (!user) {
+  //         res.json({ success: false, message: 'User not found' }); // Return error, user was not found in db
+  //       } else {
+  //         res.json({ success: true, user: user }); // Return success, send user object to frontend for profile
+  //       }
+  //     }
+  //   });
+  // });
 
-  /* ===============================================================
-     Route to get user's public profile data
-  =============================================================== */
-  router.get('/publicProfile/:username', (req, res) => {
-    // Check if username was passed in the parameters
-    if (!req.params.username) {
-      res.json({ success: false, message: 'No username was provided' }); // Return error message
-    } else {
-      // Check the database for username
-      User.findOne({ username: req.params.username }).select('username email').exec((err, user) => {
-        // Check if error was found
-        if (err) {
-          res.json({ success: false, message: 'Something went wrong.' }); // Return error message
-        } else {
-          // Check if user was found in the database
-          if (!user) {
-            res.json({ success: false, message: 'Username not found.' }); // Return error message
-          } else {
-            res.json({ success: true, user: user }); // Return the public user's profile data
-          }
-        }
-      });
-    }
-  });
+  // /* ===============================================================
+  //   Route to get user's public profile data
+  // =============================================================== */
+  // router.get('/publicProfile/:username', (req, res) => {
+  //   // Check if username was passed in the parameters
+  //   if (!req.params.username) {
+  //     res.json({ success: false, message: 'No username was provided' }); // Return error message
+  //   } else {
+  //     // Check the database for username
+  //     User.findOne({ username: req.params.username }).select('username email').exec((err, user) => {
+  //       // Check if error was found
+  //       if (err) {
+  //         res.json({ success: false, message: 'Something went wrong.' }); // Return error message
+  //       } else {
+  //         // Check if user was found in the database
+  //         if (!user) {
+  //           res.json({ success: false, message: 'Username not found.' }); // Return error message
+  //         } else {
+  //           res.json({ success: true, user: user }); // Return the public user's profile data
+  //         }
+  //       }
+  //     });
+  //   }
+  // });
 
-/*checkemail and checkUsername will be called while the user is tying inside the
-username or email box in the frontend and privide live feedback to the user*/
-  /* ============================================================
-    Route to check if user's email is available for registration
- ============================================================ */
- router.get('/checkEmail/:email', (req, res) => {
-   // Check if email was provided in paramaters
-   if (!req.params.email) {
-     res.json({ success: false, message: 'E-mail was not provided' }); // Return error
-   } else {
-     // Search for user's e-mail in database;
-     User.findOne({ email: req.params.email }, (err, user) => {
-       if (err) {
-         res.json({ success: false, message: err }); // Return connection error
-       } else {
-         // Check if user's e-mail is taken
-         if (user) {
-           res.json({ success: false, message: 'E-mail is already taken' }); // Return as taken e-mail
-         } else {
-           res.json({ success: true, message: 'E-mail is available' }); // Return as available e-mail
-         }
-       }
-     });
-   }
- });
-
- /* ===============================================================
-    Route to check if user's username is available for registration
- =============================================================== */
- router.get('/checkUsername/:username', (req, res) => {
-   // Check if username was provided in paramaters
-   if (!req.params.username) {
-     res.json({ success: false, message: 'Username was not provided' }); // Return error
-   } else {
-     // Look for username in database
-     User.findOne({ username: req.params.username }, (err, user) => { // Check if connection error was found
-       if (err) {
-         res.json({ success: false, message: err }); // Return connection error
-       } else {
-         // Check if user's username was found
-         if (user) {
-           res.json({ success: false, message: 'Username is already taken' }); // Return as taken username
-         } else {
-           res.json({ success: true, message: 'Username is available' }); // Return as vailable username
-         }
-       }
-     });
-   }
- });
+ 
+  router.post('/pp',(req,res)=>{
+    res.send('testing');
+  })
 
   return router; // Return router object to main index.js
 }

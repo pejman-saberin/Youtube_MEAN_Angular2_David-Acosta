@@ -24,7 +24,8 @@ var corsOptions = {//be careful using cors to not allow cross orgin from any dom
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
 app.use(cors({
-  origin: 'http://localhost:4200' //once you implement the application is not require if you are implmenting on one domain. This allow http request from front end developemnet
+  //origin: 'http://localhost:4200' //once you implement the application is not require if you are implmenting on one domain. This allow http request from front end developemnet
+  origin: 'https://mean-project-pejmansaberin.c9users.io:8081'  //when using c9 use this domain
 }))
 //body parser is a middleware used to parse data copied from https://github.com/expressjs/body-parser
 // parse application/x-www-form-urlencoded
