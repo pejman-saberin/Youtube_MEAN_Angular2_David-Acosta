@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import {HomeComponent} from './components/home/home.component';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import{RegisterComponent} from './components/register/register.component';
-import{LoginComponent} from './components/login/login.component'
+import{LoginComponent} from './components/login/login.component';
+import {ProfileComponent} from './components/profile/profile.component';
 
 const appRoutes: Routes = [
   {
@@ -21,12 +22,18 @@ const appRoutes: Routes = [
     component: RegisterComponent,
     pathMatch: 'full'
   },
-  
+
    {
     path: 'login',
     component: LoginComponent,
     pathMatch: 'full'
   },
+
+  {
+   path: 'profile',
+   component: ProfileComponent,
+   pathMatch: 'full'
+ },
 
   //{ path: '',   redirectTo: '/heroes', pathMatch: 'full' },
   { path: '**', component: HomeComponent,pathMatch: 'full' }  //any other route redirect to homepage
