@@ -225,9 +225,40 @@ username or email box in the frontend and privide live feedback to the user*/
   //   }
   // });
 
- 
-  router.post('/pp',(req,res)=>{
-    res.send('testing');
+  //this is required for authentication. (min 30 of video 6), any routes that require authenticaiton go after this route. Like register page will go before
+  //and profile page will go after
+  router.use((req,res,next)=>{
+    const token=req.headers['authorization'];
+    if (!token){
+      res.json({success:false, message: 'No token provided'});
+    }else{
+      //make sure token is the corrct token
+      jwt.verify(token,config.secret,(err,decoded)=>{
+        if(err){
+          res.json({seccuss:false, message: 'Token invalid: '+err});
+        }else{
+          req.decoded=decoded;
+          next();  //javac\script function to execute the next task in the callback
+        }
+      });
+    }
+  });
+
+  //decoded is available to profile because it is after router.use((req,res,next) aboce
+  router.get('/profile',(req,res)=>{
+    //res.send(req.decoded);
+    User.findOne({_id:req.decoded.userId}).select('username email').exec((err,user)=>{
+      if(err){
+        res.json({success: false, message: err});
+      } else{
+        if(!user){
+          res.json({success: false, message: 'User not found'});
+        }else{
+          res.json({success:true, user: user});
+        }
+
+      }
+    })
   })
 
   return router; // Return router object to main index.js

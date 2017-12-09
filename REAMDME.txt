@@ -13,3 +13,7 @@ video 2-setting up navigation bar for angular page and also setup routing for an
 video 3-setup node API backend for registration, and adding custom messages and validation and overriding mongoose validation
 video 4: generating register component in angular (ng generate component register), then add validation. The form is not connected to the backend but in the next video it will
 	It is also good to have validation in the front end because there is no reason to contact the backend if the information is not correct 
+
+video 5:implementing the login page and sending the login information to the backend using http request
+video 5: login authentication and creating token for the user, stroing the token in localstorage in the browser, from min 20, creating a profile page, grabbing the local storage token and sending it 
+	to the backend for the routes that require authentication, then on min 30 how to grab the token in the backend from request headers from the request that is sent from the front end
