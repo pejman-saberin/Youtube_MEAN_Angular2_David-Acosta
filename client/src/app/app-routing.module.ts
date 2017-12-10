@@ -7,6 +7,7 @@ import{LoginComponent} from './components/login/login.component';
 import {ProfileComponent} from './components/profile/profile.component';
 import {AuthGuard} from './guards/auth.guard';
 import {NotAuthGuard} from './guards/notAuth.guard';
+import {BlogComponent} from './components/blog/blog.component';
 
 
 const appRoutes: Routes = [
@@ -41,6 +42,14 @@ const appRoutes: Routes = [
    canActivate: [AuthGuard],
    pathMatch: 'full'
  },
+
+ {
+  path: 'blog',
+  component: BlogComponent,
+  canActivate: [AuthGuard],
+  pathMatch: 'full'
+},
+
 
   //{ path: '',   redirectTo: '/heroes', pathMatch: 'full' },
   { path: '**', component: HomeComponent,pathMatch: 'full' }  //any other route redirect to homepage
