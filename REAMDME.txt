@@ -20,4 +20,12 @@ video 6: login authentication and creating token for the user, stroing the token
 	and also how to hide and show the routes before and after login using angular2-wt
 
 video 7: last time we could hide and show links  using angular2-wt but user can still navigate to the hidden links if they attach the name to the URL like this http://localhost:4200/dahshboard. To address this this video
-	brings up the sbject of MEAN Stack Tutorial with Angular 2 - Part 7: AuthGuard/CanActivate/Restricted Routes
+	brings up the sbject of MEAN Stack Tutorial with Angular 2 - Part 7: AuthGuard/CanActivate/Restricted Routes:
+	How to restrict the routes so that not even through URL user can access the routes
+	How to save the route that user was intenteded to go and was retricted to the login page and directed the user after logging in min 9:00
+	Replcing the old bootstrap with bootstrap watch for better user experience (very simple)
+
+video 8 STARTS
+	
+	
+	
