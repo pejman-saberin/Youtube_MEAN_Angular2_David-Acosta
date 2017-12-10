@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,Validators, FormControl } from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
+import {AuthGuard} from '../../guards/auth.guard'
 
 @Component({
   selector: 'app-login',
@@ -10,9 +11,22 @@ import {Router} from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private formBuilder:FormBuilder, private authService: AuthService, private router: Router ) {this.createForm ();}
+  previousURL;
+
+  constructor(private formBuilder:FormBuilder,
+              private authService: AuthService,
+              private router: Router,
+              private authGuard:AuthGuard) {this.createForm ();}
 
   ngOnInit() {
+    //check here if the requestURL exists and if it does, that means the the user was redirected, so send the user back
+    if(this.authGuard.redirectURL){
+      this.messageClass="alert alert-danger";
+      this.message='You must be logged in to view that page';
+      this.previousURL=this.authGuard.redirectURL;
+      this.authGuard.redirectURL=undefined;
+
+    }
   }
 
   messageClass;
@@ -62,7 +76,11 @@ export class LoginComponent implements OnInit {
         this.authService.storeUserData(data.token, data.user);
         // After 2 seconds, redirect to dashboard page
         setTimeout(() => {
-          this.router.navigate(['/dashboard']); // Navigate to dashboard view
+          if (this.previousURL){ //if the previous URL exists, we know that the user was redirected
+              this.router.navigate([this.previousURL]);
+          } else{
+              this.router.navigate(['/dashboard']); // Navigate to dashboard view
+          }
         }, 2000);
       }
     });
