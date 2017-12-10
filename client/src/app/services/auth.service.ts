@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Http,Headers,RequestOptions} from '@angular/http';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
+import { tokenNotExpired } from 'angular2-jwt';
+
 
 @Injectable()
 export class AuthService {
@@ -64,6 +66,11 @@ export class AuthService {
     this.createAuthenticationHeaders(); //this will grab the token in the authentication Headers
     return this.http.get(this.domain+'/authentication/profile',this.options).map(res=>res.json()); //this options is contains token and it is set in createAuthenticationHeaders
 
+  }
+
+  //
+  loggedIn() {  //copy and pasted from https://github.com/auth0/angular2-jwt, when token is not expired, some routes are hidden. This checks to see if token is available . use npm install angular2-jwt
+    return tokenNotExpired();
   }
 
 
