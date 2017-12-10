@@ -17,4 +17,7 @@ video 4: generating register component in angular (ng generate component registe
 video 5:implementing the login page and sending the login information to the backend using http request
 video 6: login authentication and creating token for the user, stroing the token in localstorage in the browser, from min 20, creating a profile page, grabbing the local storage token and sending it 
 	to the backend for the routes that require authentication, then on min 30 how to grab the token in the backend from request headers from the request that is sent from the front end, displaying the logout and flash messages 
-	and also how to hide and show the routes before and after login using angular2-jwt
+	and also how to hide and show the routes before and after login using angular2-wt
+
+video 7: last time we could hide and show links  using angular2-wt but user can still navigate to the hidden links if they attach the name to the URL like this http://localhost:4200/dahshboard. To address this this video
+	brings up the sbject of MEAN Stack Tutorial with Angular 2 - Part 7: AuthGuard/CanActivate/Restricted Routes
