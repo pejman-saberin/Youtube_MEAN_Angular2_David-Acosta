@@ -1,3 +1,12 @@
-<p>
-  blog works!
-</p>
+<h1>Blog Feed</h1>
+
+<!-- <div class='row show-hide-message'>
+  <div [ngClass]="MessageClass">
+    {{message}}
+  </div>
+</div> -->
+
+<button type="button" name="button" class="btn btn-warning" *ngIf="!newPost">New Post</button>
+<button type="button" name="button" class="btn btn-default">
+  <span class="glyphicon glyphicon-repeat"></span>
+  &nbsp;Reloading</button>

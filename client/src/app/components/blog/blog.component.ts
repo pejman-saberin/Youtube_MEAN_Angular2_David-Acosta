@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BlogComponent implements OnInit {
 
+  message;
+  messageClass;
+  newPost=false;
+
   constructor() { }
 
   ngOnInit() {
