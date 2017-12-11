@@ -7,6 +7,7 @@ const mongoose = require('mongoose');  //using const is the ES6 syntex
 const config=require('./config/database');
 const path=require('path');
 const authentication=require('./routes/authentication')(router);
+const blogs=require('./routes/blogs')(router);
 const cors=require('cors');//this is needed if you are sending request from front end to the backend in localhost, prevents cross origin request are not allowed error
 
 mongoose.Promise = global.Promise; //this supress the warning in the console
@@ -44,6 +45,7 @@ app.use(bodyParser.json())
 // use the following
 app.use(express.static(__dirname+'/client/dist/'));
 app.use('/authentication', authentication);
+app.use('/blogs',blogs);
 // app.get('*', (req, res)=>{  ///putting * instead of /  , includes all the paths.
 //   res.sendFile(path.join(__dirname+'/client/dist/index.html'));
 // });

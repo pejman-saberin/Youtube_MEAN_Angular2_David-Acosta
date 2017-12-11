@@ -227,22 +227,23 @@ username or email box in the frontend and privide live feedback to the user*/
 
   //this is required for authentication. (min 30 of video 6), any routes that require authenticaiton go after this route. Like register page will go before
   //and profile page will go after
-  router.use((req,res,next)=>{
-    const token=req.headers['authorization'];
-    if (!token){
-      res.json({success:false, message: 'No token provided'});
-    }else{
-      //make sure token is the corrct token
-      jwt.verify(token,config.secret,(err,decoded)=>{
-        if(err){
-          res.json({seccuss:false, message: 'Token invalid: '+err});
-        }else{
-          req.decoded=decoded;
-          next();  //javac\script function to execute the next task in the callback
-        }
-      });
-    }
-  });
+  /*comment below out while development so that that any post that comes after authentication doesn't reuqire token  */
+  // router.use((req,res,next)=>{
+  //   const token=req.headers['authorization'];
+  //   if (!token){
+  //     res.json({success:false, message: 'No token provided'});
+  //   }else{
+  //     //make sure token is the corrct token
+  //     jwt.verify(token,config.secret,(err,decoded)=>{
+  //       if(err){
+  //         res.json({seccuss:false, message: 'Token invalid: '+err});
+  //       }else{
+  //         req.decoded=decoded;
+  //         next();  //javac\script function to execute the next task in the callback
+  //       }
+  //     });
+  //   }
+  // });
 
   //decoded is available to profile because it is after router.use((req,res,next) aboce
   router.get('/profile',(req,res)=>{
