@@ -27,6 +27,8 @@ video 7: last time we could hide and show links  using angular2-wt but user can 
 
 video 8 : Blog Defining the look and feel of the fron-end, then define the backend model and router, then at min 30 it implements the form on when someone clicks on 'New POST' (not post comment) to do API calls 
 	to the back end for the blog to get saved to the database.
+
+video 9: Start
 	
 	
 	
