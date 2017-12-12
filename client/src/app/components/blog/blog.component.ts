@@ -21,7 +21,8 @@ export class BlogComponent implements OnInit {
   username;
 
   constructor(private formBuilder: FormBuilder,
-              private authService:AuthService) {
+              private authService:AuthService,
+              private blogService:BlogService) {
     this.createNewBlogForm(); //when component loads it creates the form for us
   }
 
@@ -89,10 +90,28 @@ export class BlogComponent implements OnInit {
     this.disableFormNewBlogForm();
 
     const blog={
-      title: this.form.get('title').value();
-      body: this.form.get('body').value();
-      createdBy=this.username
+      title: this.form.get('title').value,
+      body: this.form.get('body').value,
+      createdBy:this.username
     }
+    this.blogService.newBlog(blog).subscribe(data=>{
+      if(!data.success){
+        this.messageClass='alert alert-danger';
+        this.message=data.message;
+        this.processing=false;
+        this.enableFormNewBlogForm();
+      } else{
+        this.messageClass='alert alert-success';
+        this.message=data.message;
+        setTimeout(()=>{
+          this.newPost=false;
+          this.processing=false;
+          this.message=false;
+          this.form.reset();
+          this.enableFormNewBlogForm();
+        },2000)
+      }
+    });
   }
 
   goBack(){

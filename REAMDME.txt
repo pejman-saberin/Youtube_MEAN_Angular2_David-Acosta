@@ -25,7 +25,8 @@ video 7: last time we could hide and show links  using angular2-wt but user can 
 	How to save the route that user was intenteded to go and was retricted to the login page and directed the user after logging in min 9:00
 	Replcing the old bootstrap with bootstrap watch for better user experience (very simple)
 
-video 8 : Blog Defining the look and feel of the fron-end, then define the backend, model and router then at min 30, it implements API calls to the back end for the blog
+video 8 : Blog Defining the look and feel of the fron-end, then define the backend model and router, then at min 30 it implements the form on when someone clicks on 'New POST' (not post comment) to do API calls 
+	to the back end for the blog to get saved to the database.
 	
 	
 	

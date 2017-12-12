@@ -7,7 +7,7 @@ import { tokenNotExpired } from 'angular2-jwt';
 @Injectable()
 export class AuthService {
 
-  domain="http://localhost:8080";
+  domain="http://localhost:8080/";
   //domain="https://mean-project-pejmansaberin.c9users.io:8080"; //cloud 9
   authToken;
   user;
@@ -34,20 +34,20 @@ export class AuthService {
   }
 
   registerUser(user){
-     return this.http.post(this.domain+'/authentication/register', user).map(res=>res.json());
+     return this.http.post(this.domain+'authentication/register', user).map(res=>res.json());
   }
 
   checkUsername(username){
-     return this.http.get(this.domain+'/authentication/checkUsername/'+ username).map(res=>res.json());
+     return this.http.get(this.domain+'authentication/checkUsername/'+ username).map(res=>res.json());
   }
 
   checkEmail(email){
     console.log('this is email'+email);
-     return this.http.get(this.domain+'/authentication/checkEmail/'+ email).map(res=>res.json());
+     return this.http.get(this.domain+'authentication/checkEmail/'+ email).map(res=>res.json());
   }
 
   login(user){
-    return this.http.post(this.domain+'/authentication/login',user).map(res=>res.json());
+    return this.http.post(this.domain+'authentication/login',user).map(res=>res.json());
   }
   logout(){
     this.authToken=null;
@@ -64,7 +64,7 @@ export class AuthService {
   }
   getProfile(){
     this.createAuthenticationHeaders(); //this will grab the token in the authentication Headers
-    return this.http.get(this.domain+'/authentication/profile',this.options).map(res=>res.json()); //this options is contains token and it is set in createAuthenticationHeaders
+    return this.http.get(this.domain+'authentication/profile',this.options).map(res=>res.json()); //this options is contains token and it is set in createAuthenticationHeaders
 
   }
 
