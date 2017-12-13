@@ -19,12 +19,21 @@ export class BlogComponent implements OnInit {
   form;
   processing=false;
   username;
+  blogPosts;
 
   constructor(private formBuilder: FormBuilder,
               private authService:AuthService,
               private blogService:BlogService) {
     this.createNewBlogForm(); //when component loads it creates the form for us
   }
+
+  ngOnInit() {
+    this.authService.getProfile().subscribe(profile=>{
+      this.username=profile.user.username;
+    });
+    this.getAllBlogs();
+  }
+
 
   createNewBlogForm(){
     this.form=this.formBuilder.group({
@@ -64,11 +73,6 @@ export class BlogComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-    this.authService.getProfile().subscribe(profile=>{
-      this.username=profile.user.username;
-    })
-  }
 
   newBlogForm(){
     this.newPost=true;
@@ -103,6 +107,7 @@ export class BlogComponent implements OnInit {
       } else{
         this.messageClass='alert alert-success';
         this.message=data.message;
+        this.getAllBlogs();  //everytime a new blog is posted get all the blogs inclusing the new one
         setTimeout(()=>{
           this.newPost=false;
           this.processing=false;
@@ -116,6 +121,12 @@ export class BlogComponent implements OnInit {
 
   goBack(){
     window.location.reload(); //reloads the page
+  }
+
+  getAllBlogs(){
+    this.blogService.getAllBlogs().subscribe(data=>{
+      this.blogPosts=data.blogs;
+    });
   }
 
 
