@@ -18,6 +18,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import {AuthGuard} from './guards/auth.guard';
 import {NotAuthGuard} from './guards/notAuth.guard';
 import { BlogComponent } from './components/blog/blog.component';
+import { EditBlogComponent } from './components/blog/edit-blog/edit-blog.component';
 
 
 
@@ -33,7 +34,8 @@ import { BlogComponent } from './components/blog/blog.component';
     RegisterComponent,
     LoginComponent,
     ProfileComponent,
-    BlogComponent,
+    BlogComponent,     
+    EditBlogComponent,
 
    ],
   imports: [
