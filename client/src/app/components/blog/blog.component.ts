@@ -77,8 +77,9 @@ export class BlogComponent implements OnInit {
   newBlogForm(){
     this.newPost=true;
   }
-  reloadblogs(){
+  reloadBlogs(){
     this.loadingBlogs=true; //hide teh reload button for 4 seconds
+    this.getAllBlogs();
     setTimeout(()=>{
       this.loadingBlogs=false;
     },4000);

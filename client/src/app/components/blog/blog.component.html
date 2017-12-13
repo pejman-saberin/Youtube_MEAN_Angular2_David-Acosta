@@ -10,10 +10,8 @@
   New Post
 </button>
 
-<button [disabled]="loadingBlogs" type="button" name="button" class="btn btn-default" *ngIf="!newPost" (click)="reloadBlogs()">
-  <span class="glyphicon glyphicon-repeat"></span>
-  &nbsp;Reloading
-</button>
+<!-- Reload Button -->
+<button [disabled]="loadingBlogs" type="button" name="button" class="btn btn-default" *ngIf="!newPost" (click)="reloadBlogs()"><span class="glyphicon glyphicon-repeat"></span>&nbsp;&nbsp;Reload</button>
 <br />
 <br />
 
@@ -59,33 +57,37 @@
 
 
  <div *ngIf="!newPost">
-  <div class="panel panel-primary">
+  <div class="panel panel-primary" *ngFor="let blog of blogPosts"> <!--with *ngFor this blog of div is repeated for each blog -->
+    <!-- Panel Title -->
     <div class="panel-heading">
-      <h3 class="panel-title"></h3>
+      <h3 class="panel-title">{{ blog.title }}</h3>
     </div>
+
+    <!-- Panel Body -->
     <div class="panel-body">
-      A blonde notices that her coworker has a thermos, so she asks him what it's for. He responds, "It keeps hot things hot and cold things cold."
-      The blonde immediately buys one for herself. The next day, she goes to work and proudly displays it.
-      Her coworker asks, "What do you have in it?"
-      She replies, "Soup and ice cream."
+      {{ blog.body }}
     </div>
-    <!-- footer -->
+
+    <!-- Panel Footer Start -->
     <div class="panel-footer">
-        <strong> Posted by: </strong> Pejman
+      <strong>Posted by: </strong>{{ blog.createdBy }}
+      <br />
+      <strong>Date: </strong>{{ blog.createdAt | date:'MMM dd, yyyy' }}
+      <br />
+      <div *ngIf="username === blog.createdBy">
+        <strong>Likes: </strong>{{ blog.likes }}
         <br />
-        <strong>Date: </strong>June 20,2017
-        <br />
-      <div>
-        <strong>Likes: </strong>25
-        <br />
-        <strong>Dislikes: </strong>22
-        <br />
+        <strong>Dislikes: </strong>{{ blog.dislikes }}
       </div>
-      <a href="#"><button type="button" name="button" class="btn btn-sm btn-info">Edit</button></a>
-      <a href="#"><button type="button" name="button" class="btn btn-sm btn-danger">Delete</button></a>
+
+      <!-- Edit Button -->
+      <a [routerLink]="['/edit-blog/', blog._id]" *ngIf="username === blog.createdBy"><button type="button" name="button" class="btn btn-sm btn-info">Edit</button></a>
+      <!-- Delete Button -->
+      <a [routerLink]="['/delete-blog/', blog._id]" *ngIf="username === blog.createdBy"><button type="button" name="button" class="btn btn-sm btn-danger">Delete</button></a>
+
       <!-- Likes dropdown -->
       <div class="dropdown">
-        <button type="button" name="button" class="btn btn-sm btn-success">
+        <button type="button" name="button" class="btn btn-sm btn-success" *ngIf="username!==blog.createdBy"> <!--*ngIf="username===blog.createdBy" used to prevent users to like their own posts-->
             <span class="glyphicon glyphicon-thumbs-up">&nbsp;</span>Likes:21
         </button>
         <div class="dropdown-content">
@@ -97,7 +99,7 @@
       <!-- DisLikes dropdown -->
 
       <div class="dropdown">
-        <button type="button" name="button" class="btn btn-sm btn-warning">
+        <button type="button" name="button" class="btn btn-sm btn-warning" *ngIf="username!==blog.createdBy">
             <span class="glyphicon glyphicon-thumbs-down">&nbsp;</span>Dislikes:21
         </button>
         <div class="dropdown-content">
