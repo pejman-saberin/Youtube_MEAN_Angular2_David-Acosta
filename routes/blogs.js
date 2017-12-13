@@ -54,5 +54,20 @@ module.exports=(router)=>{
        }
      }
    });
+
+   router.get('/allBlogs',(req,res)=>{
+     //res.send('test');
+     Blog.find({}, (err,blogs)=>{
+       if(err){
+         res.jason({seccuss:false, message:err});
+       }else {
+         if(!blogs){
+           res.json({seccuss:false, message: 'No blogs found'});
+         }else{
+           res.json({success:true, blogs:blogs});
+         }
+       }
+     }).sort({'_id':-1})  //sqrt the newest one on top
+   })
   return router;
 };
