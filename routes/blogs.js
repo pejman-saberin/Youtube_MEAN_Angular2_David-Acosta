@@ -68,6 +68,49 @@ module.exports=(router)=>{
          }
        }
      }).sort({'_id':-1})  //sqrt the newest one on top
-   })
+   });
+
+   /* ===============================================================
+    GET SINGLE BLOG
+ =============================================================== */
+ router.get('/singleBlog/:id', (req, res) => {
+   // Check if id is present in parameters
+   if (!req.params.id) {
+     res.json({ success: false, message: 'No blog ID was provided.' }); // Return error message
+   } else {
+     // Check if the blog id is found in database
+     Blog.findOne({ _id: req.params.id }, (err, blog) => {
+       // Check if the id is a valid ID
+       if (err) {
+         res.json({ success: false, message: 'Not a valid blog id' }); // Return error message
+       } else {
+         // Check if blog was found by id
+         if (!blog) {
+           res.json({ success: false, message: 'Blog not found.' }); // Return error message
+         } else {
+           // Find the current user that is logged in
+           User.findOne({ _id: req.decoded.userId }, (err, user) => {
+             // Check if error was found
+             if (err) {
+               res.json({ success: false, message: err }); // Return error
+             } else {
+               // Check if username was found in database
+               if (!user) {
+                 res.json({ success: false, message: 'Unable to authenticate user' }); // Return error message
+               } else {
+                 // Check if the user who requested single blog is the one who created it
+                 if (user.username !== blog.createdBy) {
+                   res.json({ success: false, message: 'You are not authorized to edit this blog.' }); // Return authentication reror
+                 } else {
+                   res.json({ success: true, blog: blog }); // Return success
+                 }
+               }
+             }
+           });
+         }
+       }
+     });
+   }
+ });
   return router;
 };
