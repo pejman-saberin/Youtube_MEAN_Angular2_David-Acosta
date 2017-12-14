@@ -31,6 +31,6 @@ video 8 : Blog Defining the look and feel of the fron-end, then define the backe
 video 9: Get all the data from the backend (sorting it in backend as well), service for blog retrives, blog component.ts subscribes and HTML biding. Hiding like and dislike in
 	the frontend and showing edit and delete for the user who made the blog. Using 'Reload' button to retrive.
 	
-video 10: Backend and front end for edit blog and using ActivatedRoute to extract the ID from URL
+video 10: Creating the Edit-blog component, user can only edit and delete their own.Backend and front end for edit blog and using ActivatedRoute to extract the ID from URL
 	
 	
