@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import { HttpModule } from '@angular/http';
+import {FormsModule} from '@angular/forms'
 //import { FlashMessagesModule } from 'angular2-flash-messages';//this didn't work for me it is from video
 import { FlashMessagesModule } from 'ngx-flash-messages';
 
@@ -34,7 +35,7 @@ import { EditBlogComponent } from './components/blog/edit-blog/edit-blog.compone
     RegisterComponent,
     LoginComponent,
     ProfileComponent,
-    BlogComponent,     
+    BlogComponent,
     EditBlogComponent,
 
    ],
@@ -42,6 +43,7 @@ import { EditBlogComponent } from './components/blog/edit-blog/edit-blog.compone
     BrowserModule,
     HttpModule,
     ReactiveFormsModule,
+    FormsModule,
     AppRoutingModule,  //if you just create a module you just add it here
     FlashMessagesModule
   ],
