@@ -9,6 +9,8 @@ import {AuthGuard} from './guards/auth.guard';
 import {NotAuthGuard} from './guards/notAuth.guard';
 import {BlogComponent} from './components/blog/blog.component';
 import { EditBlogComponent } from './components/blog/edit-blog/edit-blog.component';
+import { DeleteBlogComponent } from './components/blog/delete-blog/delete-blog.component';
+
 
 
 const appRoutes: Routes = [
@@ -56,8 +58,12 @@ const appRoutes: Routes = [
  canActivate: [AuthGuard],
  pathMatch: 'full'
 },
-
-
+{
+ path: 'delete-blog/:id',
+ component: DeleteBlogComponent,
+ canActivate: [AuthGuard],
+ pathMatch: 'full'
+},
   //{ path: '',   redirectTo: '/heroes', pathMatch: 'full' },
   { path: '**', component: HomeComponent,pathMatch: 'full' }  //any other route redirect to homepage
 ];
