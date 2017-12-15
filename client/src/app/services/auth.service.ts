@@ -68,6 +68,12 @@ export class AuthService {
 
   }
 
+  // Function to get public profile data
+  getPublicProfile(username) {
+    this.createAuthenticationHeaders(); // Create headers before sending to API
+    return this.http.get(this.domain + 'authentication/publicProfile/' + username, this.options).map(res => res.json());
+  }
+
   //
   loggedIn() {  //copy and pasted from https://github.com/auth0/angular2-jwt, when token is not expired, some routes are hidden. This checks to see if token is available . use npm install angular2-jwt
     return tokenNotExpired();

@@ -34,5 +34,8 @@ video 9: Get all the data from the backend (sorting it in backend as well), serv
 video 10: Creating the Edit-blog component, user can only edit and delete their own.Backend and front end for edit blog and using ActivatedRoute to extract the ID from URL.
 		finally the blog is updated by pressing save changes
 video 11: ng generate component delete-blog inside of the blog component. Also, backend for deleting
+
+video 12: like and dislike functionality , diabling the button if user already liked and disliked, dropdown showing the list of users that liked and disliked the post with 
+	clicable username to show public profile.(min 23)
 	
 	

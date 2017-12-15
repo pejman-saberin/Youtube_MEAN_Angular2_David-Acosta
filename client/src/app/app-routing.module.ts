@@ -5,6 +5,7 @@ import {DashboardComponent} from './components/dashboard/dashboard.component';
 import{RegisterComponent} from './components/register/register.component';
 import{LoginComponent} from './components/login/login.component';
 import {ProfileComponent} from './components/profile/profile.component';
+import { PublicProfileComponent } from './components/public-profile/public-profile.component';
 import {AuthGuard} from './guards/auth.guard';
 import {NotAuthGuard} from './guards/notAuth.guard';
 import {BlogComponent} from './components/blog/blog.component';
@@ -61,6 +62,12 @@ const appRoutes: Routes = [
 {
  path: 'delete-blog/:id',
  component: DeleteBlogComponent,
+ canActivate: [AuthGuard],
+ pathMatch: 'full'
+},
+{
+ path: 'user/:username',
+ component: PublicProfileComponent,
  canActivate: [AuthGuard],
  pathMatch: 'full'
 },
