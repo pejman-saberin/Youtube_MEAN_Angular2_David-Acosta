@@ -92,9 +92,7 @@
             <span class="glyphicon glyphicon-thumbs-up">&nbsp;</span>Likes: {{blog.likes}}
         </button>
         <div class="dropdown-content">
-          <a href="#">Jack</a>
-          <a href="#">Nazanin</a>
-          <a href="#">Asghar</a>
+          <a [routerLink]="['/user/', liker]" *ngFor="let liker of blog.likedBy">{{ liker }}</a>
         </div>
       </div>
       <!-- DisLikes dropdown -->
@@ -105,9 +103,7 @@
             <span class="glyphicon glyphicon-thumbs-down">&nbsp;</span>Disklikes: {{blog.dislikes}}
         </button>
         <div class="dropdown-content">
-          <a href="#">Soosan</a>
-          <a href="#">Nazak</a>
-          <a href="#">Vince</a>
+          <a [routerLink]="['/user/', disliker]" *ngFor="let disliker of blog.dislikedBy">{{ disliker }}</a>
         </div>
       </div>
     </div>
