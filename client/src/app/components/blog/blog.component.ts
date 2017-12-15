@@ -130,6 +130,22 @@ export class BlogComponent implements OnInit {
     });
   }
 
+  // Function to like a blog post
+  likeBlog(id) {
+    // Service to like a blog post
+    this.blogService.likeBlog(id).subscribe(data => {
+      this.getAllBlogs(); // Refresh blogs after like
+    });
+  }
+
+  // Function to disliked a blog post
+  dislikeBlog(id) {
+    // Service to dislike a blog post
+    this.blogService.dislikeBlog(id).subscribe(data => {
+      this.getAllBlogs(); // Refresh blogs after dislike
+    });
+  }
+
 
 
 }
