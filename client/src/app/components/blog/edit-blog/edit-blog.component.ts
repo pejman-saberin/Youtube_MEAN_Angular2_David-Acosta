@@ -23,7 +23,7 @@ export class EditBlogComponent implements OnInit {
 
   constructor(private location:Location
               private activatedRoute:ActivatedRoute,
-              private blogService:BlogService
+              private blogService:BlogService,
               private router:Router) { }
 
   ngOnInit() {

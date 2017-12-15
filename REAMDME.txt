@@ -33,6 +33,6 @@ video 9: Get all the data from the backend (sorting it in backend as well), serv
 	
 video 10: Creating the Edit-blog component, user can only edit and delete their own.Backend and front end for edit blog and using ActivatedRoute to extract the ID from URL.
 		finally the blog is updated by pressing save changes
-video 11: START
+video 11: ng generate component delete-blog inside of the blog component. Also, backend for deleting
 	
 	
