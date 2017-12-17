@@ -7,7 +7,7 @@ import { tokenNotExpired } from 'angular2-jwt';
 @Injectable()
 export class AuthService {
 
-  domain="http://localhost:8080/";
+  domain=""; //for heroku you need to use the correct domain
   //domain="https://mean-project-pejmansaberin.c9users.io:8080"; //cloud 9
   authToken;
   user;
