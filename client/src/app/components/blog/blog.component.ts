@@ -20,6 +20,7 @@ export class BlogComponent implements OnInit {
   processing=false;
   username;
   blogPosts;
+  newComment;
 
   constructor(private formBuilder: FormBuilder,
               private authService:AuthService,
@@ -144,6 +145,10 @@ export class BlogComponent implements OnInit {
     this.blogService.dislikeBlog(id).subscribe(data => {
       this.getAllBlogs(); // Refresh blogs after dislike
     });
+  }
+
+  postcomment(id){
+
   }
 
 
