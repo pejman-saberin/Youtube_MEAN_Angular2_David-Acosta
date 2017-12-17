@@ -40,6 +40,16 @@ video 12: like and dislike functionality , diabling the button if user already l
 	
 video 13: Part 13: Post Comments on Blog Posts. This works with arrays and forms intead of forms and json objects.  
 
-Video 14:Part 14: Deploy App to Google Domains (Heroku)  
-	commands: 	ng build --prod  --> inside client folder. This might give you some errors that needs to get fixed. Fix those 
-				deploynig to heroku
+Video 14:Part 14: Deploy App to Google Domains (Heroku) , run the following in the order
+	commands: 	1-ng build --prod  --> inside client folder. This might give you some errors that needs to get fixed. Fix those 
+				2-deploynig to heroku  --> make sure for the port you don't use a hardcoded one in index.js ,use const port=process.env.PORT || 8080; //heroku will implement its onw port using process.env.PORT
+				3- add a scrpipt ("build": "cd client && ng build --prod && cd.. &&node index.js") in package.json
+					"scripts": {
+					"start": "node index.js",
+					"test": "echo \"Error: no test specified\" && exit 1",
+					"build": "cd client && ng build --prod && cd.. &&node index.js"
+				  },
+				  
+				  once you add this, run the command -->  ng build run
+				
+
