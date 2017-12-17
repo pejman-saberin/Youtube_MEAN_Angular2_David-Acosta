@@ -9,6 +9,7 @@ const path=require('path');
 const authentication=require('./routes/authentication')(router);
 const blogs=require('./routes/blogs')(router);
 const cors=require('cors');//this is needed if you are sending request from front end to the backend in localhost, prevents cross origin request are not allowed error
+const port=process.env.PORT || 8080; //heroku will implement its onw port using process.env.PORT
 
 mongoose.Promise = global.Promise; //this supress the warning in the console
 mongoose.connect(config.uri,  { useMongoClient: true },(err)=>{  //added  { useMongoClient: true } to supress the message in the console
@@ -51,7 +52,8 @@ app.use('/blogs',blogs);
 // });
 
 
-var port=8080;
+//var port=8080;
 app.listen(port,()=>{
   console.log(`Listing on port: ${port}`);
+  //console.log('Listing on port: '+port);
 });
