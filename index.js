@@ -44,12 +44,13 @@ app.use(bodyParser.json())
    res.send('<h1>hello world</h1>');
  });
 // use the following
-app.use(express.static(__dirname+'/client/dist/'));
+//app.use(express.static(__dirname+'/client/dist/'));
+app.use(express.static(__dirname+'/public/'));
 app.use('/authentication', authentication);
 app.use('/blogs',blogs);
-// app.get('*', (req, res)=>{  ///putting * instead of /  , includes all the paths.
-//   res.sendFile(path.join(__dirname+'/client/dist/index.html'));
-// });
+app.get('*', (req, res)=>{  ///putting * instead of /  , includes all the paths.
+  res.sendFile(path.join(__dirname+'/public/index.html'));
+});
 
 
 //var port=8080;

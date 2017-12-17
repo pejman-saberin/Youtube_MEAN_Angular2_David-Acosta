@@ -43,13 +43,38 @@ video 13: Part 13: Post Comments on Blog Posts. This works with arrays and forms
 Video 14:Part 14: Deploy App to Google Domains (Heroku) , run the following in the order
 	commands: 	1-ng build --prod  --> inside client folder. This might give you some errors that needs to get fixed. Fix those 
 				2-deploynig to heroku  --> make sure for the port you don't use a hardcoded one in index.js ,use const port=process.env.PORT || 8080; //heroku will implement its onw port using process.env.PORT
-				3- add a scrpipt ("build": "cd client && ng build --prod && cd.. &&node index.js") in package.json
+				3- add a scrpipt ("build": "cd client && ng build --prod && cd.. && node index.js") in package.json
 					"scripts": {
 					"start": "node index.js",
 					"test": "echo \"Error: no test specified\" && exit 1",
 					"build": "cd client && ng build --prod && cd.. &&node index.js"
 				  },
 				  
-				  once you add this, run the command -->  ng build run
-				
-
+				  once you add this, run the command --> npm run build once you run this, then access your site through http://localhost:8080/login and make sure you remove comment from 
+				  
+				  app.get('*', (req, res)=>{  ///putting * instead of /  , includes all the paths.
+					  res.sendFile(path.join(__dirname+'/client/dist/index.html'));
+					});
+					
+					dist folder inside the client is where the production application will be built
+							
+					Deploying to heroku:
+					two problems:
+					1-the dist folder will not get submitted to heroku and git becuase it is ignored. So once you apply to heroku it will be missing
+					2-Angular has its own dependency. Therefore, ng build won't work because package.json inside client hasn't installed things
+					
+					to solve the above two problems, there are 2 solutions:
+					1-(this is tedious and more work) ==>add something to your build scripts inside your package.json in your root folder (not client) to telll heroku to go to client folder and install the dependencies, then try to run your commands
+					
+					2-Have angular to use a "outDir" that will be implamented outside of the angular folder instead of the dist folder. This is in angular-cli.json  ( "outDir": "../public"). Now try to run npm run build again
+					now the public folder that is created will get included in GIT and hence heroku. BE SURE TO DELETE THE PUBLIC FOLDER BEFORE SENDING IT TO GITHUB OR ELSE YOU WILL INCLUDE YOUR PRODUCTION. 
+					you can now delete the dist folder. You would also need to change app.use(express.static(__dirname+'/client/dist/')); to include the public folder instead and also:
+					app.get('*', (req, res)=>{  ///putting * instead of /  , includes all the paths.
+					  res.sendFile(path.join(__dirname+'/public/index.html'));
+					});
+					
+					
+					Going live on heroku
+						
+					
+	
