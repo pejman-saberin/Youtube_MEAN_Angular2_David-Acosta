@@ -11,7 +11,7 @@ import {BlogService} from '../../../services/blog.service';
 export class EditBlogComponent implements OnInit {
 
   message;
-  MessageClass;
+  messageClass;
   // blog={
   //   title:String,
   //   body:String
@@ -21,7 +21,7 @@ export class EditBlogComponent implements OnInit {
   currentUrl;
   loading=true;
 
-  constructor(private location:Location
+  constructor(private location:Location,
               private activatedRoute:ActivatedRoute,
               private blogService:BlogService,
               private router:Router) { }

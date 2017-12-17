@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   messageClass;
   message;
   processing=false;
-  form:FormGroup;
+  form;
 
   createForm(){
     this.form=this.formBuilder.group({

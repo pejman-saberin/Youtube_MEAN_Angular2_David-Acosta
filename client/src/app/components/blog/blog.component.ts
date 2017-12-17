@@ -23,13 +23,13 @@ export class BlogComponent implements OnInit {
   enabledComments = [];
 
   constructor(
-    private formBuilder: FormBuilder,
-    private authService: AuthService,
-    private blogService: BlogService
-  ) {
-    this.createNewBlogForm(); // Create new blog form on start up
-    this.createCommentForm(); // Create form for posting comments on a user's blog post
-  }
+     private formBuilder: FormBuilder,
+     private authService: AuthService,
+     private blogService: BlogService
+   ) {
+     this.createNewBlogForm(); // Create new blog form on start up
+     this.createCommentForm(); // Create form for posting comments on a user's blog post
+   }
 
   // Function to create new blog form
   createNewBlogForm() {

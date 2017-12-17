@@ -39,3 +39,6 @@ video 12: like and dislike functionality , diabling the button if user already l
 	clicable username to show public profile.(min 23)
 	
 video 13: Part 13: Post Comments on Blog Posts. This works with arrays and forms intead of forms and json objects.  
+
+Video 14:Part 14: Deploy App to Google Domains (Heroku)  
+	commands: 	ng build --prod  --> inside client folder. This might give you some errors that needs to get fixed
