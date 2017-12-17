@@ -25,7 +25,7 @@ if(err){
 //   origin: 'http://example.com',
 //   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 // }
-app.use(cors({
+app.use(cors({ //to apply in heroku it didn't seem like I needed to change this 
   origin: 'http://localhost:4200' //once you implement the application is not require if you are implmenting on one domain. This allow http request from front end developemnet
   //origin: 'https://mean-project-pejmansaberin.c9users.io:8081'  //when using c9 use this domain
 }))
