@@ -38,4 +38,4 @@ video 11: ng generate component delete-blog inside of the blog component. Also, 
 video 12: like and dislike functionality , diabling the button if user already liked and disliked, dropdown showing the list of users that liked and disliked the post with 
 	clicable username to show public profile.(min 23)
 	
-video 13: Part 13: Post Comments on Blog Posts	
+video 13: Part 13: Post Comments on Blog Posts. This works with arrays and forms intead of forms and json objects.  
